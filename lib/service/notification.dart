@@ -40,7 +40,8 @@ class AlarmNotification {
 
   // Callback to stop the alarm when the notification is opened.
   static onSelectNotification(NotificationResponse notificationResponse) async {
-    await stopAlarm(notificationResponse.id);
+    await stopAlarm(0);
+    // await stopAlarm(notificationResponse.id);
   }
 
   // Callback to stop the alarm when the notification is opened for iOS versions older than 10.
