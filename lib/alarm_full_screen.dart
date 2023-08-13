@@ -36,11 +36,15 @@ class AlarmFullScreen {
       }
     };
 
-    await Future.wait([
-      if (android) AndroidAlarm.init(),
-      AlarmNotification.instance.init(),
-      AlarmStorage.init(),
-    ]);
+    // await Future.wait([
+    //   if (android) AndroidAlarm.init(),
+    //   AlarmNotification.instance.init(),
+    //   AlarmStorage.init(),
+    // ]);
+    if (android) AndroidAlarm.init();
+    await AlarmNotification.instance.init();
+    await AlarmStorage.init();
+    print("初期化完了！！！！");
     await checkAlarm();
   }
 
