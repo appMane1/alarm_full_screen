@@ -19,7 +19,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  alarm:
+  alarm_full_screen:
     # When depending on this package from a real application you should use:
     #   alarm: ^x.y.z
     # See https://dart.dev/tools/pub/dependencies#version-constraints

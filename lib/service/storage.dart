@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:alarm/alarm.dart';
-import 'package:alarm/model/alarm_settings.dart';
+import 'package:alarm_full_screen/alarm_full_screen.dart';
+import 'package:alarm_full_screen/model/alarm_settings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AlarmStorage {

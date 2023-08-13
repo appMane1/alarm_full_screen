@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:alarm/alarm.dart';
-import 'package:alarm/service/storage.dart';
+import 'package:alarm_full_screen/alarm_full_screen.dart';
+import 'package:alarm_full_screen/service/storage.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_fgbg/flutter_fgbg.dart';
 

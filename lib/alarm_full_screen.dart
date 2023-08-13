@@ -1,13 +1,13 @@
 // ignore_for_file: avoid_print
 
-export 'package:alarm/model/alarm_settings.dart';
+export 'package:alarm_full_screen/model/alarm_settings.dart';
 import 'dart:async';
 
-import 'package:alarm/model/alarm_settings.dart';
-import 'package:alarm/src/ios_alarm.dart';
-import 'package:alarm/src/android_alarm.dart';
-import 'package:alarm/service/notification.dart';
-import 'package:alarm/service/storage.dart';
+import 'package:alarm_full_screen/model/alarm_settings.dart';
+import 'package:alarm_full_screen/src/ios_alarm.dart';
+import 'package:alarm_full_screen/src/android_alarm.dart';
+import 'package:alarm_full_screen/service/notification.dart';
+import 'package:alarm_full_screen/service/storage.dart';
 import 'package:flutter/foundation.dart';
 
 /// Custom print function designed for Alarm plugin.

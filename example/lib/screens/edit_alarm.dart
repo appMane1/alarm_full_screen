@@ -1,4 +1,4 @@
-import 'package:alarm/alarm.dart';
+import 'package:alarm_full_screen/alarm_full_screen.dart';
 import 'package:flutter/material.dart';
 
 class ExampleAlarmEditScreen extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:alarm/alarm.dart';
+import 'package:alarm_full_screen/alarm_full_screen.dart';
 import 'package:alarm_example/screens/edit_alarm.dart';
 import 'package:alarm_example/screens/ring.dart';
 import 'package:alarm_example/widgets/tile.dart';

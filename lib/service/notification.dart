@@ -1,4 +1,4 @@
-import 'package:alarm/alarm.dart';
+import 'package:alarm_full_screen/alarm_full_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
