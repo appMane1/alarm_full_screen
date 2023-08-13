@@ -114,6 +114,7 @@ class AlarmNotification {
       playSound: false,
       enableLights: true,
       fullScreenIntent: true,
+      ongoing: true,
       actions: <AndroidNotificationAction>[
         AndroidNotificationAction(
           'text_id',
