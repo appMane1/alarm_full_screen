@@ -115,21 +115,21 @@ class AlarmNotification {
       enableLights: true,
       fullScreenIntent: true,
       ongoing: true,
-      ticker: 'ticker',
-      actions: <AndroidNotificationAction>[
-        AndroidNotificationAction(
-          'text_id_2',
-          'Action 2',
-          icon: DrawableResourceAndroidBitmap('food'),
-          inputs: <AndroidNotificationActionInput>[
-            AndroidNotificationActionInput(
-              choices: <String>['ABC', 'DEF'],
-              allowFreeFormInput: false,
-            ),
-          ],
-          contextual: true,
-        ),
-      ],
+      // ticker: 'ticker',
+      // actions: <AndroidNotificationAction>[
+      //   AndroidNotificationAction(
+      //     'text_id_2',
+      //     'Action 2',
+      //     icon: DrawableResourceAndroidBitmap('food'),
+      //     inputs: <AndroidNotificationActionInput>[
+      //       AndroidNotificationActionInput(
+      //         choices: <String>['ABC', 'DEF'],
+      //         allowFreeFormInput: false,
+      //       ),
+      //     ],
+      //     contextual: true,
+      //   ),
+      // ],
       // actions: <AndroidNotificationAction>[
       //   AndroidNotificationAction(
       //     'text_id',
