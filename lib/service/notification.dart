@@ -111,6 +111,19 @@ class AlarmNotification {
       playSound: false,
       enableLights: true,
       fullScreenIntent: true,
+      actions: <AndroidNotificationAction>[
+        AndroidNotificationAction(
+          'text_id',
+          'Action',
+          inputs: <AndroidNotificationActionInput>[
+            AndroidNotificationActionInput(
+              choices: <String>['停止'],
+              allowFreeFormInput: false,
+            ),
+          ],
+          contextual: true,
+        ),
+      ],
     );
 
     const platformChannelSpecifics = NotificationDetails(

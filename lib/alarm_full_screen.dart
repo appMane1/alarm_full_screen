@@ -44,7 +44,6 @@ class AlarmFullScreen {
     if (android) AndroidAlarm.init();
     await AlarmNotification.instance.init();
     await AlarmStorage.init();
-    print("初期化完了！！！！");
     await checkAlarm();
   }
 
