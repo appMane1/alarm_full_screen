@@ -13,7 +13,7 @@ import 'package:flutter/foundation.dart';
 /// Custom print function designed for Alarm plugin.
 DebugPrintCallback alarmPrint = debugPrintThrottled;
 
-class Alarm {
+class AlarmFullScreen {
   /// Whether it's iOS device.
   static bool get iOS => defaultTargetPlatform == TargetPlatform.iOS;
 
@@ -73,12 +73,12 @@ class Alarm {
       );
     }
 
-    for (final alarm in Alarm.getAlarms()) {
+    for (final alarm in AlarmFullScreen.getAlarms()) {
       if (alarm.id == alarmSettings.id ||
           (alarm.dateTime.day == alarmSettings.dateTime.day &&
               alarm.dateTime.hour == alarmSettings.dateTime.hour &&
               alarm.dateTime.minute == alarmSettings.dateTime.minute)) {
-        await Alarm.stop(alarm.id);
+        await AlarmFullScreen.stop(alarm.id);
       }
     }
 

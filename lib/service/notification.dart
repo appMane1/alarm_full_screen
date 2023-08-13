@@ -55,9 +55,9 @@ class AlarmNotification {
   /// Stops the alarm.
   static Future<void> stopAlarm(int? id) async {
     if (id != null &&
-        Alarm.getAlarm(id)?.stopOnNotificationOpen != null &&
-        Alarm.getAlarm(id)!.stopOnNotificationOpen) {
-      await Alarm.stop(id);
+        AlarmFullScreen.getAlarm(id)?.stopOnNotificationOpen != null &&
+        AlarmFullScreen.getAlarm(id)!.stopOnNotificationOpen) {
+      await AlarmFullScreen.stop(id);
     }
   }
 

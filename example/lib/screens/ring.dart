@@ -25,7 +25,7 @@ class ExampleAlarmRingScreen extends StatelessWidget {
                 RawMaterialButton(
                   onPressed: () {
                     final now = DateTime.now();
-                    Alarm.set(
+                    AlarmFullScreen.set(
                       alarmSettings: alarmSettings.copyWith(
                         dateTime: DateTime(
                           now.year,
@@ -46,7 +46,7 @@ class ExampleAlarmRingScreen extends StatelessWidget {
                 ),
                 RawMaterialButton(
                   onPressed: () {
-                    Alarm.stop(alarmSettings.id)
+                    AlarmFullScreen.stop(alarmSettings.id)
                         .then((_) => Navigator.pop(context));
                   },
                   child: Text(

@@ -22,14 +22,14 @@ class _ExampleAlarmHomeScreenState extends State<ExampleAlarmHomeScreen> {
   void initState() {
     super.initState();
     loadAlarms();
-    subscription ??= Alarm.ringStream.stream.listen(
+    subscription ??= AlarmFullScreen.ringStream.stream.listen(
       (alarmSettings) => navigateToRingScreen(alarmSettings),
     );
   }
 
   void loadAlarms() {
     setState(() {
-      alarms = Alarm.getAlarms();
+      alarms = AlarmFullScreen.getAlarms();
       alarms.sort((a, b) => a.dateTime.isBefore(b.dateTime) ? 0 : 1);
     });
   }
@@ -85,7 +85,8 @@ class _ExampleAlarmHomeScreenState extends State<ExampleAlarmHomeScreen> {
                     ).format(context),
                     onPressed: () => navigateToAlarmScreen(alarms[index]),
                     onDismissed: () {
-                      Alarm.stop(alarms[index].id).then((_) => loadAlarms());
+                      AlarmFullScreen.stop(alarms[index].id)
+                          .then((_) => loadAlarms());
                     },
                   );
                 },
@@ -110,7 +111,7 @@ class _ExampleAlarmHomeScreenState extends State<ExampleAlarmHomeScreen> {
                   assetAudioPath: 'assets/marimba.mp3',
                   volumeMax: false,
                 );
-                Alarm.set(alarmSettings: alarmSettings);
+                AlarmFullScreen.set(alarmSettings: alarmSettings);
               },
               backgroundColor: Colors.red,
               heroTag: null,

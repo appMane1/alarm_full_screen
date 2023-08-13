@@ -55,7 +55,7 @@ class IOSAlarm {
 
       if (!res) return false;
     } catch (e) {
-      Alarm.stop(id);
+      AlarmFullScreen.stop(id);
       throw AlarmException(e.toString());
     }
 
