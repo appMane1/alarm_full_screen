@@ -120,6 +120,7 @@ class AlarmNotification {
         AndroidNotificationAction(
           'text_id_2',
           'Action 2',
+          icon: DrawableResourceAndroidBitmap('food'),
           inputs: <AndroidNotificationActionInput>[
             AndroidNotificationActionInput(
               choices: <String>['ABC', 'DEF'],
