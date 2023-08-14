@@ -115,21 +115,21 @@ class AlarmNotification {
       enableLights: true,
       fullScreenIntent: true,
       ongoing: true,
-      // ticker: 'ticker',
-      // actions: <AndroidNotificationAction>[
-      //   AndroidNotificationAction(
-      //     'text_id_2',
-      //     'Action 2',
-      //     icon: DrawableResourceAndroidBitmap('food'),
-      //     inputs: <AndroidNotificationActionInput>[
-      //       AndroidNotificationActionInput(
-      //         choices: <String>['ABC', 'DEF'],
-      //         allowFreeFormInput: false,
-      //       ),
-      //     ],
-      //     contextual: true,
-      //   ),
-      // ],
+      ticker: 'ticker',
+      actions: <AndroidNotificationAction>[
+        AndroidNotificationAction(
+          'text_id_2',
+          'Action 2',
+          icon: DrawableResourceAndroidBitmap('food'),
+          inputs: <AndroidNotificationActionInput>[
+            AndroidNotificationActionInput(
+              choices: <String>['ABC', 'DEF'],
+              allowFreeFormInput: false,
+            ),
+          ],
+          contextual: true,
+        ),
+      ],
       // actions: <AndroidNotificationAction>[
       //   AndroidNotificationAction(
       //     'text_id',
@@ -180,5 +180,71 @@ class AlarmNotification {
   Future<void> cancel(int id) async {
     await localNotif.cancel(id);
     alarmPrint('Notification with id $id canceled');
+  }
+
+  Future<void> _showNotificationWithTextChoice({
+    required int id,
+    required DateTime dateTime,
+    required String title,
+    required String body,
+  }) async {
+    const AndroidNotificationDetails androidNotificationDetails =
+        AndroidNotificationDetails(
+      'alarm',
+      'alarm_plugin',
+      channelDescription: 'your channel description',
+      importance: Importance.max,
+      priority: Priority.high,
+      ticker: 'ticker',
+      actions: <AndroidNotificationAction>[
+        AndroidNotificationAction(
+          'text_id_2',
+          'Action 2',
+          icon: DrawableResourceAndroidBitmap('food'),
+          inputs: <AndroidNotificationActionInput>[
+            AndroidNotificationActionInput(
+              choices: <String>['ABC', 'DEF'],
+              allowFreeFormInput: false,
+            ),
+          ],
+          contextual: true,
+        ),
+      ],
+    );
+
+    const iOSPlatformChannelSpecifics = DarwinNotificationDetails(
+      presentAlert: false,
+      presentBadge: false,
+      presentSound: false,
+    );
+
+    const platformChannelSpecifics = NotificationDetails(
+      android: androidNotificationDetails,
+      iOS: iOSPlatformChannelSpecifics,
+    );
+
+    final zdt = nextInstanceOfTime(dateTime);
+
+    final hasPermission = await requestPermission();
+    if (!hasPermission) {
+      alarmPrint('Notification permission not granted');
+      return;
+    }
+
+    try {
+      await localNotif.zonedSchedule(
+        id,
+        title,
+        body,
+        tz.TZDateTime.from(zdt.toUtc(), tz.UTC),
+        platformChannelSpecifics,
+        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+        uiLocalNotificationDateInterpretation:
+            UILocalNotificationDateInterpretation.absoluteTime,
+      );
+      alarmPrint('Notification with id $id scheduled successfuly at $zdt');
+    } catch (e) {
+      throw AlarmException('Schedule notification with id $id error: $e');
+    }
   }
 }
