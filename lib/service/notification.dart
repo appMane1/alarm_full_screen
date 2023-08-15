@@ -72,11 +72,11 @@ class AlarmNotification {
             'ああああああああああああああああああああああああああああああああ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
           );
       }
-
-      alarmPrint(
-        'いいいいいいいいいいいいいいいいいいいいいいいいいい aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-      );
     }
+
+    alarmPrint(
+      'いいいいいいいいいいいいいいいいいいいいいいいいいい aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+    );
 
     // await stopAlarm(notificationResponse.id);
   }
