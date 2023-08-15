@@ -68,10 +68,15 @@ class AlarmNotification {
     if (notificationResponse.input?.isNotEmpty ?? false) {
       switch (notificationResponse.notificationResponseType) {
         case NotificationResponseType.selectedNotification:
-          // selectNotificationStream.add(notificationResponse.id.toString());
+          alarmPrint(
+            'Alarm NotificationResponseType.selectedNotification  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+          );
           break;
         case NotificationResponseType.selectedNotificationAction:
-          await stopAlarm(notificationResponse.id);
+          alarmPrint(
+            'Alarm NotificationResponseType.selectedNotificationAction aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+          );
+          // await stopAlarm(notificationResponse.id);
           break;
       }
     }
