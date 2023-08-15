@@ -3,9 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
-import 'package:flutter/material.dart';
-
-import 'dart:async';
 
 class ReceivedNotification {
   ReceivedNotification({
@@ -20,12 +17,6 @@ class ReceivedNotification {
   final String? body;
   final String? payload;
 }
-
-final StreamController<ReceivedNotification> didReceiveLocalNotificationStream =
-    StreamController<ReceivedNotification>.broadcast();
-
-final StreamController<String?> selectNotificationStream =
-    StreamController<String?>.broadcast();
 
 /// The purpose of this class is to show a notification to the user
 /// when the alarm rings so the user can understand where the audio
@@ -53,8 +44,6 @@ class AlarmNotification {
       iOS: initializationSettingsIOS,
     );
 
-    _configureSelectNotificationSubject();
-
     await localNotif.initialize(
       initializationSettings,
       onDidReceiveBackgroundNotificationResponse: onSelectNotification,
@@ -81,14 +70,7 @@ class AlarmNotification {
       }
     }
 
-    var _scaffoldKey = GlobalKey<ScaffoldState>();
-    ScaffoldMessenger.of(_scaffoldKey.currentContext!).showSnackBar(
-      const SnackBar(
-        content: Text('メッセージ'),
-      ),
-    );
-
-    await stopAlarm(notificationResponse.id);
+    // await stopAlarm(notificationResponse.id);
   }
 
   // Callback to stop the alarm when the notification is opened for iOS versions older than 10.
@@ -134,12 +116,6 @@ class AlarmNotification {
     }
 
     return tz.TZDateTime.from(dateTime, tz.local);
-  }
-
-  void _configureSelectNotificationSubject() {
-    selectNotificationStream.stream.listen((String? id) async {
-      await stopAlarm(int.parse(id!));
-    });
   }
 
   /// Schedules notification at the given [dateTime].
