@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import 'package:flutter/material.dart';
 
 /// The purpose of this class is to show a notification to the user
 /// when the alarm rings so the user can understand where the audio
@@ -43,9 +44,16 @@ class AlarmNotification {
     if (notificationResponse.input?.isNotEmpty ?? false) {
       // await stopAlarm(0);
       await stopAlarm(notificationResponse.id);
+
+      var _scaffoldKey = GlobalKey<ScaffoldState>();
+      ScaffoldMessenger.of(_scaffoldKey.currentContext!).showSnackBar(
+        const SnackBar(
+          content: Text('メッセージ'),
+        ),
+      );
     }
 
-    // await stopAlarm(notificationResponse.id);
+    await stopAlarm(notificationResponse.id);
   }
 
   // Callback to stop the alarm when the notification is opened for iOS versions older than 10.
@@ -120,7 +128,7 @@ class AlarmNotification {
       actions: <AndroidNotificationAction>[
         AndroidNotificationAction(
           'text_id_2',
-          '削除',
+          '停止',
           icon: DrawableResourceAndroidBitmap('food'),
           // inputs: <AndroidNotificationActionInput>[
           //   AndroidNotificationActionInput(
