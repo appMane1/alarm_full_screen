@@ -41,7 +41,8 @@ class AlarmNotification {
   // Callback to stop the alarm when the notification is opened.
   static onSelectNotification(NotificationResponse notificationResponse) async {
     if (notificationResponse.input?.isNotEmpty ?? false) {
-      await stopAlarm(0);
+      // await stopAlarm(0);
+      await stopAlarm(notificationResponse.id);
     }
 
     // await stopAlarm(notificationResponse.id);
@@ -119,14 +120,14 @@ class AlarmNotification {
       actions: <AndroidNotificationAction>[
         AndroidNotificationAction(
           'text_id_2',
-          'Action 2',
+          '削除',
           icon: DrawableResourceAndroidBitmap('food'),
-          inputs: <AndroidNotificationActionInput>[
-            AndroidNotificationActionInput(
-              choices: <String>['ABC', 'DEF'],
-              allowFreeFormInput: false,
-            ),
-          ],
+          // inputs: <AndroidNotificationActionInput>[
+          //   AndroidNotificationActionInput(
+          //     choices: <String>['ABC', 'DEF'],
+          //     allowFreeFormInput: false,
+          //   ),
+          // ],
           contextual: true,
         ),
       ],
@@ -195,6 +196,7 @@ class AlarmNotification {
       channelDescription: 'your channel description',
       importance: Importance.max,
       priority: Priority.high,
+      fullScreenIntent: true,
       ticker: 'ticker',
       actions: <AndroidNotificationAction>[
         AndroidNotificationAction(
