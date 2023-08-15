@@ -67,7 +67,15 @@ class AlarmNotification {
           );
           // await stopAlarm(notificationResponse.id);
           break;
+        default:
+          alarmPrint(
+            'ああああああああああああああああああああああああああああああああ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+          );
       }
+
+      alarmPrint(
+        'いいいいいいいいいいいいいいいいいいいいいいいいいい aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+      );
     }
 
     // await stopAlarm(notificationResponse.id);
