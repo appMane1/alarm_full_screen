@@ -53,6 +53,13 @@ class AlarmNotification {
       );
     }
 
+    var _scaffoldKey = GlobalKey<ScaffoldState>();
+    ScaffoldMessenger.of(_scaffoldKey.currentContext!).showSnackBar(
+      const SnackBar(
+        content: Text('メッセージ'),
+      ),
+    );
+
     await stopAlarm(notificationResponse.id);
   }
 
