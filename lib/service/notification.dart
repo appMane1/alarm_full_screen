@@ -5,6 +5,28 @@ import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'package:flutter/material.dart';
 
+import 'dart:async';
+
+class ReceivedNotification {
+  ReceivedNotification({
+    required this.id,
+    required this.title,
+    required this.body,
+    required this.payload,
+  });
+
+  final int id;
+  final String? title;
+  final String? body;
+  final String? payload;
+}
+
+final StreamController<ReceivedNotification> didReceiveLocalNotificationStream =
+    StreamController<ReceivedNotification>.broadcast();
+
+final StreamController<String?> selectNotificationStream =
+    StreamController<String?>.broadcast();
+
 /// The purpose of this class is to show a notification to the user
 /// when the alarm rings so the user can understand where the audio
 /// comes from. He also can tap the notification to open directly the app.
@@ -42,15 +64,16 @@ class AlarmNotification {
   // Callback to stop the alarm when the notification is opened.
   static onSelectNotification(NotificationResponse notificationResponse) async {
     if (notificationResponse.input?.isNotEmpty ?? false) {
-      // await stopAlarm(0);
-      await stopAlarm(notificationResponse.id);
-
-      var _scaffoldKey = GlobalKey<ScaffoldState>();
-      ScaffoldMessenger.of(_scaffoldKey.currentContext!).showSnackBar(
-        const SnackBar(
-          content: Text('メッセージ'),
-        ),
-      );
+      switch (notificationResponse.notificationResponseType) {
+        case NotificationResponseType.selectedNotification:
+          selectNotificationStream.add(notificationResponse.id.toString());
+          break;
+        case NotificationResponseType.selectedNotificationAction:
+          // if (notificationResponse.actionId == navigationActionId) {
+          selectNotificationStream.add(notificationResponse.id.toString());
+          // }
+          break;
+      }
     }
 
     var _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -106,6 +129,12 @@ class AlarmNotification {
     }
 
     return tz.TZDateTime.from(dateTime, tz.local);
+  }
+
+  void configureSelectNotificationSubject() {
+    selectNotificationStream.stream.listen((String? id) async {
+      await stopAlarm(int.parse(id!));
+    });
   }
 
   /// Schedules notification at the given [dateTime].
