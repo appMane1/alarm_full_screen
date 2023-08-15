@@ -54,31 +54,9 @@ class AlarmNotification {
 
   // Callback to stop the alarm when the notification is opened.
   static onSelectNotification(NotificationResponse notificationResponse) async {
-    if (notificationResponse.input?.isNotEmpty ?? false) {
-      switch (notificationResponse.notificationResponseType) {
-        case NotificationResponseType.selectedNotification:
-          alarmPrint(
-            'Alarm NotificationResponseType.selectedNotification  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-          );
-          break;
-        case NotificationResponseType.selectedNotificationAction:
-          alarmPrint(
-            'Alarm NotificationResponseType.selectedNotificationAction aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-          );
-          // await stopAlarm(notificationResponse.id);
-          break;
-        default:
-          alarmPrint(
-            'ああああああああああああああああああああああああああああああああ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-          );
-      }
-    }
-
-    alarmPrint(
-      'いいいいいいいいいいいいいいいいいいいいいいいいいい aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-    );
-
-    // await stopAlarm(notificationResponse.id);
+    AlarmFullScreen.getAlarms().forEach((element) async {
+      await AlarmFullScreen.stop(element.id);
+    });
   }
 
   // Callback to stop the alarm when the notification is opened for iOS versions older than 10.

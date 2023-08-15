@@ -1,6 +1,6 @@
 name: alarm_full_screen
 description: A simple Flutter alarm manager plugin for both iOS and Android.
-version: 1.0.3
+version: 1.0.4
 
 environment:
   sdk: '>=2.18.5 <4.0.0'
