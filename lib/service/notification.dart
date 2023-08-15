@@ -53,6 +53,8 @@ class AlarmNotification {
       iOS: initializationSettingsIOS,
     );
 
+    _configureSelectNotificationSubject();
+
     await localNotif.initialize(
       initializationSettings,
       onDidReceiveBackgroundNotificationResponse: onSelectNotification,
@@ -131,7 +133,7 @@ class AlarmNotification {
     return tz.TZDateTime.from(dateTime, tz.local);
   }
 
-  void configureSelectNotificationSubject() {
+  void _configureSelectNotificationSubject() {
     selectNotificationStream.stream.listen((String? id) async {
       await stopAlarm(int.parse(id!));
     });
