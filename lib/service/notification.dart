@@ -68,12 +68,10 @@ class AlarmNotification {
     if (notificationResponse.input?.isNotEmpty ?? false) {
       switch (notificationResponse.notificationResponseType) {
         case NotificationResponseType.selectedNotification:
-          selectNotificationStream.add(notificationResponse.id.toString());
+          // selectNotificationStream.add(notificationResponse.id.toString());
           break;
         case NotificationResponseType.selectedNotificationAction:
-          // if (notificationResponse.actionId == navigationActionId) {
-          selectNotificationStream.add(notificationResponse.id.toString());
-          // }
+          await stopAlarm(notificationResponse.id);
           break;
       }
     }
